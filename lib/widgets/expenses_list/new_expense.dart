@@ -14,6 +14,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  Category? _selectedCategory;
 
   void _openDateOverLay() async {
     final now = DateTime.now();
@@ -79,6 +80,30 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 16),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: DropdownButton<Category>(
+              value: _selectedCategory,
+              hint: const Text("Select Category"),
+              items: Category.values
+                  .map(
+                    (category) => DropdownMenuItem(
+                      value: category,
+                      child: Text(category.name.toUpperCase()),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                setState(() {
+                  _selectedCategory = value;
+                });
+              },
+            ),
           ),
           const SizedBox(height: 40),
           Row(
