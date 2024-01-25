@@ -35,6 +35,7 @@ class _NewExpenseState extends State<NewExpense> {
   void _saveExpense() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount < 0;
+
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
         _selectedDate == null ||
@@ -57,19 +58,17 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
+
     final newExpense = Expense(
-    title: _titleController.text,
-    amount: double.tryParse(_amountController.text)!,
-    date: _selectedDate!,
-    category: _selectedCategory!,
+      title: _titleController.text,
+      amount: double.tryParse(_amountController.text)!,
+      date: _selectedDate!,
+      category: _selectedCategory!,
     );
 
     widget.addExpense(newExpense);
     Navigator.pop(context);
   }
-
-
-
 
   @override
   void dispose() {

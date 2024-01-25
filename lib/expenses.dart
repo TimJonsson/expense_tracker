@@ -28,9 +28,7 @@ class _ExpensesState extends State<Expenses> {
 
   void addExpense(Expense expense) {
     _registerExpenses.add(expense);
-
     setState(() {
-      
     });
   }
 
