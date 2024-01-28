@@ -17,17 +17,15 @@ class Chart extends StatelessWidget {
     ];
   }
 
-  double get maxTotalExpense {
-    double maxTotalExpense = 0;
+  int get totalNumberOfExpenses {
+  int total = 0;
 
-    for (final bucket in buckets) {
-      if (bucket.totalExpenses > maxTotalExpense) {
-        maxTotalExpense = bucket.totalExpenses;
-      }
-    }
-
-    return maxTotalExpense;
+  for (final bucket in buckets) {
+    total += bucket.expenses.length;
   }
+
+  return total;
+}
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +58,7 @@ class Chart extends StatelessWidget {
               children: [
                 for (final bucket in buckets) // alternative to map()
                   ChartBar(
-                    fill: bucket.totalExpenses == 0
-                        ? 0
-                        : bucket.totalExpenses / maxTotalExpense,
+                    fill: bucket.expenses.length / totalNumberOfExpenses,
                   )
               ],
             ),
