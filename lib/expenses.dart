@@ -80,7 +80,10 @@ class _ExpensesState extends State<Expenses> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Flutter expense tracker"),
+          title: const Text(
+            "Flutter expense tracker",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           actions: [
             IconButton(
                 onPressed: () {
@@ -101,9 +104,7 @@ class _ExpensesState extends State<Expenses> {
             : Expanded(
                 child: Row(
                   children: [
-                    Expanded(
-                      child: Chart(
-                        expenses: _registeredExpenses)),
+                    Expanded(child: Chart(expenses: _registeredExpenses)),
                     Expanded(
                       child: mainContent,
                     ),
